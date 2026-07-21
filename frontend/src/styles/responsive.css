@@ -1,0 +1,436 @@
+﻿@media (max-width: 1240px) {
+  .app-body {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .app-body.sidebar-collapsed {
+    grid-template-columns: 74px minmax(0, 1fr);
+  }
+
+  .flow-shell .react-flow {
+    min-height: calc(100vh - 240px);
+  }
+
+  .workspace.with-inspector {
+    margin-right: min(380px, calc(100vw - 32px));
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1120px) {
+  .workspace.with-inspector {
+    margin-right: 0;
+  }
+
+  .canvas-titlebar {
+    align-items: center;
+    height: 54px;
+    min-height: 54px;
+  }
+
+  .canvas-title-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 6px;
+  }
+
+  .canvas-title-actions .flow-action-button {
+    min-width: 128px;
+    height: 34px;
+    padding: 0 9px;
+    font-size: 12px;
+  }
+
+  .run-progress-strip {
+    width: min(300px, calc(100vw - 330px));
+  }
+
+  .post-run-summary-card {
+    width: min(318px, calc(100vw - 330px));
+  }
+
+  .inspector {
+    top: 76px;
+    right: 12px;
+    bottom: 12px;
+    width: min(350px, calc(100vw - 32px));
+    z-index: 45;
+  }
+
+  .settings-workspace-grid,
+  .settings-form-grid.two-column {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-workspace-grid.tabbed .settings-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-workspace-grid.tabbed .settings-card > :not(.settings-card-heading) {
+    grid-column: 1;
+  }
+
+  .settings-workspace-grid.tabbed .settings-card-heading {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid #eef2f7;
+    padding: 0 0 10px;
+  }
+
+  .settings-tabbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .run-logs-grid,
+  .run-diagnostic-layout {
+    grid-template-columns: minmax(190px, 230px) minmax(0, 1fr);
+  }
+
+  .run-node-detail {
+    grid-column: 1 / -1;
+  }
+
+  .diagnostic-grid {
+    grid-template-columns: minmax(190px, 230px) minmax(0, 1fr);
+  }
+
+  .run-diagnostic-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-top-stats,
+  .dashboard-report-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-chart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1120px) {
+  .dashboard-panel {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .dashboard-summary-bar {
+    padding: 8px 12px;
+  }
+
+  .dashboard-top-stats,
+  .dashboard-report-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .dashboard-stat-card {
+    gap: 5px;
+    padding: 10px 11px;
+  }
+
+  .dashboard-stat-card strong {
+    font-size: clamp(22px, 2.6vw, 30px);
+  }
+
+  .dashboard-chart-grid {
+    grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.85fr);
+    gap: 10px;
+  }
+
+  .dashboard-chart-card {
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .dashboard-chart-card h3 {
+    font-size: 13px;
+  }
+
+  .dashboard-chart-filter button {
+    height: 23px;
+    font-size: 11px;
+    padding: 0 7px;
+  }
+
+  .dashboard-report-card {
+    padding: 8px 10px;
+  }
+
+  .dashboard-report-card strong {
+    font-size: clamp(17px, 2vw, 22px);
+  }
+}
+
+@media (max-height: 760px) and (min-width: 861px) {
+  .dashboard-summary-bar {
+    padding: 8px 12px;
+  }
+
+  .dashboard-summary-bar h3 {
+    font-size: 15px;
+  }
+
+  .dashboard-stat-card {
+    padding: 10px 12px;
+  }
+
+  .dashboard-stat-card p,
+  .dashboard-report-card p {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .dashboard-chart-card {
+    padding: 10px;
+  }
+
+  .dashboard-report-card {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    display: block;
+    padding: 8px;
+  }
+
+  .app-body,
+  .workspace {
+    display: block;
+  }
+
+  .app-body {
+    height: auto;
+  }
+
+  .script-sidebar {
+    max-height: 220px;
+    margin-bottom: 10px;
+  }
+
+  .canvas-titlebar {
+    align-items: flex-start;
+    align-content: end;
+    flex-direction: column;
+    height: auto;
+    min-height: 54px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+
+  .canvas-title-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .canvas-title-actions .flow-action-button {
+    flex: 1 1 150px;
+  }
+
+  .run-progress-strip {
+    width: min(300px, calc(100vw - 36px));
+  }
+
+  .post-run-summary-card {
+    width: min(318px, calc(100vw - 36px));
+  }
+
+  .dashboard-panel {
+    padding: 10px;
+  }
+
+  .dashboard-summary-bar {
+    display: grid;
+    gap: 8px;
+  }
+
+  .dashboard-summary-bar p {
+    max-width: none;
+    text-align: left;
+  }
+
+  .dashboard-top-stats,
+  .dashboard-report-strip,
+  .dashboard-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-chart-card {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .dashboard-chart-heading {
+    display: grid;
+  }
+
+  .dashboard-chart-filter {
+    justify-self: start;
+  }
+
+  .dashboard-chart-frame,
+  .dashboard-chart-frame.compact {
+    height: 240px;
+  }
+
+  .script-list {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  .script-list-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .flow-shell .react-flow {
+    min-height: 480px;
+  }
+
+  .inspector {
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px);
+    border-radius: 12px;
+    transform: translateX(100%);
+    
+  }
+
+  .workspace.with-inspector {
+    margin-right: 0;
+  }
+
+  .ingestion-settings-panel {
+    min-height: 640px;
+  }
+
+  .settings-workspace-grid,
+  .settings-form-grid.two-column {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-workspace-grid.tabbed {
+    padding: 6px;
+  }
+
+  .settings-workspace-grid.tabbed .settings-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 11px;
+  }
+
+  .settings-workspace-grid.tabbed .settings-card > :not(.settings-card-heading) {
+    grid-column: 1;
+  }
+
+  .settings-workspace-grid.tabbed .settings-card-heading {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid #eef2f7;
+    padding: 0 0 10px;
+  }
+
+  .settings-tabbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-workspace-actions {
+    flex-direction: column-reverse;
+  }
+
+  .settings-workspace-actions button {
+    width: 100%;
+  }
+
+  .run-logs-panel {
+    min-height: 680px;
+  }
+
+  .run-logs-grid,
+  .run-config-summary,
+  .run-diagnostic-layout,
+  .diagnostic-grid,
+  .compact-config-card .run-config-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .run-report-panel {
+    min-height: 620px;
+  }
+
+  .run-log-detail-item {
+    grid-template-columns: auto auto;
+  }
+
+  .run-log-detail-item p {
+    grid-column: 1 / -1;
+  }
+
+  .script-modal {
+    width: min(100%, calc(100vw - 24px));
+    height: calc(100vh - 24px);
+  }
+
+  .script-modal-body {
+    overflow-y: auto;
+    grid-template-rows: auto auto;
+  }
+
+  .script-basics-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .script-modal-grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
+    min-height: 720px;
+  }
+
+  .script-modal-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .script-modal-actions button {
+    width: 100%;
+  }
+
+  .schedule-mode-grid,
+  .schedule-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weekday-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .schedule-preview {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .schedule-preview strong {
+    text-align: left;
+  }
+
+  .schedule-modal-actions,
+  .schedule-confirm-actions,
+  .delete-confirm-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-modal-actions button,
+  .schedule-confirm-actions button,
+  .delete-confirm-actions button {
+    width: 100%;
+  }
+
+  .settings-editor {
+    max-height: none;
+  }
+}
+

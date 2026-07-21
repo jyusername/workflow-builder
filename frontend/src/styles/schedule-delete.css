@@ -1,0 +1,244 @@
+﻿.toggle-row {
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  margin: 14px 0 10px;
+  font-weight: 650;
+}
+
+.toggle-row input {
+  width: auto;
+}
+
+.schedule-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.schedule-mode-card {
+  min-height: 84px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  border-color: #d8e1eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #17202a;
+  padding: 12px;
+  text-align: left;
+}
+
+.schedule-mode-card strong {
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.schedule-mode-card span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.schedule-mode-card:hover {
+  border-color: #aebdca;
+  background: #f8fafc;
+}
+
+.schedule-mode-card.active {
+  border-color: #166534;
+  background: #ecfdf5;
+  box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.08);
+}
+
+.schedule-mode-card.active strong {
+  color: #14532d;
+}
+
+.schedule-panel {
+  display: grid;
+  gap: 12px;
+  border: 1px solid #d8e1eb;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.schedule-fields-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.schedule-field {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.schedule-field > span {
+  color: #334155;
+}
+
+.weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.weekday-chip {
+  min-width: 0;
+  min-height: 36px;
+  border-color: #dce3eb;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 850;
+  padding: 0 8px;
+}
+
+.weekday-chip:hover {
+  border-color: #aebdca;
+  background: #f8fafc;
+}
+
+.weekday-chip.active {
+  border-color: #166534;
+  background: #166534;
+  color: #ffffff;
+}
+
+.weekday-chip:disabled {
+  opacity: 0.55;
+}
+
+.schedule-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #d8e1eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #475569;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.schedule-preview strong {
+  min-width: 0;
+  color: #17202a;
+  font-size: 13px;
+  text-align: right;
+}
+
+.schedule-confirm-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid #d8e1eb;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  padding: 14px;
+}
+
+.schedule-confirm-card span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.schedule-confirm-card strong {
+  color: #17202a;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.clear-schedule-button {
+  justify-self: start;
+  border-color: #f4b4b4;
+  background: #fff7f7;
+  color: #f53629;
+  font-weight: 500;
+}
+
+.clear-schedule-button:hover {
+  border-color: #ef8f8f;
+  background: #feecec;
+  color: #991b1b;
+}
+
+.clear-schedule-button:disabled {
+  border-color: #e5e7eb;
+  background: #f8fafc;
+  color: #9aa5b1;
+}
+
+.delete-confirm-card {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+  border: 1px solid #e5eaf0;
+  border-radius: 10px;
+  background: #f8fafc;
+  padding: 10px 11px;
+}
+
+.delete-confirm-title-row {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.delete-confirm-mark {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff1f2;
+  color: #b42318;
+}
+
+.delete-confirm-mark svg {
+  width: 17px;
+  height: 17px;
+}
+
+.delete-confirm-card span {
+  color: #7a8797;
+  font-size: 11px;
+  font-weight: 720;
+  letter-spacing: 0;
+}
+
+.delete-confirm-card strong {
+  overflow: hidden;
+  color: #263243;
+  font-size: 13px;
+  font-weight: 760;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-confirm-button {
+  border-color: #b91c1c;
+  background: #b91c1c;
+  color: #ffffff;
+  font-weight: 720;
+}
+
+.delete-confirm-button:hover {
+  border-color: #991b1b;
+  background: #991b1b;
+  color: #ffffff;
+}
+

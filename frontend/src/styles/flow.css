@@ -1,0 +1,308 @@
+﻿.flow-script-node span,
+.flow-script-node code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.muted {
+  color: #657386;
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__controls {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #d8e1eb;
+  box-shadow: 0 12px 28px rgba(29, 41, 57, 0.12);
+}
+
+.react-flow__minimap {
+  border: 1px solid #d8e1eb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(29, 41, 57, 0.1);
+  width: 156px;
+  height: 120px;
+  background: #ffffff;
+  pointer-events: auto;
+}
+
+.flow-script-node {
+  position: relative;
+  width: 260px;
+  min-height: 145px;
+  display: grid;
+  gap: 9px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid #d8e1eb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 12px rgba(29, 41, 57, 0.25);
+  padding: 0;
+}
+
+.flow-script-node.selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1), 0 12px 26px rgba(29, 41, 57, 0.1);
+}
+
+.flow-script-node.success {
+  border-color: #75c891;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.06), 0 12px 20px rgba(29, 41, 57, 0.14);
+  animation: node-success-settle 0.42s ease-out both;
+}
+
+.flow-script-node.error {
+  border-color: #f3b5b5;
+}
+
+.flow-script-node.stopped {
+  border-color: #f7d78e;
+}
+
+.flow-script-node.running,
+.flow-script-node.queued,
+.flow-script-node.starting {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1), 0 14px 26px rgba(29, 41, 57, 0.14);
+}
+
+.flow-script-node.running::after,
+.flow-script-node.queued::after,
+.flow-script-node.starting::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  pointer-events: none;
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  border-radius: 13px;
+  animation: node-running-pulse 1.35s ease-in-out infinite;
+}
+
+.node-topline,
+.node-meta {
+  min-width: 0;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.node-topline {
+  min-height: 40px;
+  border-bottom: 1px solid #edf1f6;
+  background: linear-gradient(180deg, #fbfcfe, #f7f9fc);
+  padding: 9px 12px;
+}
+
+.node-topline span {
+  flex: 1;
+  min-width: 0;
+  color: #111827;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.node-topline small {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 78px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #edf2f7;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 850;
+  padding: 3px 7px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.flow-script-node.success .node-topline small {
+  border: 1px solid #b7e1c5;
+  background: #f0fdf4;
+  color: #166534;
+  box-shadow: none;
+}
+
+.flow-script-node.error .node-topline small {
+  background: #fff1f1;
+  color: #9f1239;
+}
+
+.flow-script-node.stopped .node-topline small {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.flow-script-node.running .node-topline small,
+.flow-script-node.queued .node-topline small,
+.flow-script-node.starting .node-topline small {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.node-meta span {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 112px;
+  overflow: hidden;
+  color: #6b7686;
+  font-size: 11px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.node-meta .node-duration {
+  flex: 0 0 auto;
+  max-width: none;
+  border-radius: 999px;
+  /* background: #eef2f7; */
+  color: #6b7686;
+  font-size: 10px;
+  font-weight: 850;
+  padding: 3px 7px;
+}
+
+.flow-script-node.success .node-duration {
+  background: #f4f8f5;
+  color: #166534;
+}
+
+.flow-script-node.error .node-duration {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.node-meta {
+  padding: 0 12px 12px;
+}
+
+.flow-script-node code {
+  display: block;
+  width: calc(100% - 24px);
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 8px;
+  background: #f7f9fc;
+  color: #334155;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 1px 12px 0;
+  padding: 8px 9px;
+}
+
+.node-progress-line {
+  width: calc(100% - 24px);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: -3px 12px 0;
+  padding: 6px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flow-script-node.success code {
+  background: #f7f9fc;
+  color: #334155;
+}
+
+@keyframes node-success-settle {
+  from {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1), 0 13px 22px rgba(29, 41, 57, 0.14);
+    transform: translateY(-1px);
+  }
+  to {
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.06), 0 12px 20px rgba(29, 41, 57, 0.14);
+    transform: translateY(0);
+  }
+}
+
+@keyframes node-running-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.99);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.flow-script-node.error code {
+  background: #fff7f7;
+}
+
+.flow-script-node.stopped code {
+  background: #fffaf0;
+}
+
+.node-handle {
+  width: 26px;
+  height: 26px;
+  border: 7px solid #ffffff;
+  background: #2563eb;
+  box-shadow: 0 0 0 1px #9bb7ef, 0 8px 18px rgba(37, 99, 235, 0.24);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.node-handle.react-flow__handle-left {
+  left: -7px;
+}
+
+.node-handle.react-flow__handle-right {
+  right: -7px;
+}
+
+.react-flow__handle {
+  width: 13px !important;
+  height: 13px !important;
+  border: 7px solid #ffffff;
+  background: #2563eb;
+  box-shadow: 0 0 0 1px #9bb7ef, 0 8px 18px rgba(37, 99, 235, 0.24);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}  
+
+.node-handle:hover,
+.node-handle.connecting,
+.node-handle.valid,
+.node-handle.react-flow__handle-connecting,
+.node-handle.react-flow__handle-valid {
+  background: rgb(38, 146, 17);
+  box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.48), 0 10px 22px rgba(37, 99, 235, 0.3);
+}
+
+.react-flow__edge-path {
+  stroke-linecap: round;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #2563eb !important;
+  stroke-width: 4px !important;
+}
+
+.react-flow__edge-interaction {
+  stroke-width: 28px !important;
+}

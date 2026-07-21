@@ -1,0 +1,435 @@
+﻿.script-sidebar {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
+  scrollbar-width: none;
+  border: 1px solid #d9e1ea;
+  border-radius: 12px;
+  background: #fbfcfe;
+  padding: 12px 10px;
+  box-shadow: 0 5px 5px rgba(29, 41, 57, 0.1);
+}
+
+.script-sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.script-sidebar.collapsed {
+  align-items: center;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  padding: 10px 7px;
+}
+
+.sidebar-brand-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+
+.script-sidebar.collapsed .sidebar-brand-row {
+  height: 40px;
+  width: 100%;
+  justify-content: center;
+}
+
+.script-sidebar.collapsed .brand {
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.16s ease;
+}
+
+.script-sidebar.collapsed:hover .brand {
+  opacity: 0;
+}
+
+.script-sidebar.collapsed .brand-mark {
+  width: 40px;
+  justify-content: center;
+  padding: 0;
+}
+
+.script-sidebar.collapsed .brand-text {
+  display: none;
+}
+
+.sidebar-toggle-button {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+}
+
+.script-sidebar.collapsed .sidebar-toggle-button svg {
+  transform: rotate(180deg);
+}
+
+.script-sidebar.collapsed .sidebar-toggle-button {
+  position: absolute;
+  inset: 6px auto auto 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 0.16s ease, background 0.16s ease;
+}
+
+.script-sidebar.collapsed:hover .sidebar-toggle-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-search {
+  min-height: 36px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 12px;
+  border: 1px solid #dce3eb;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #64748b;
+  padding: 0 10px;
+}
+
+.sidebar-search input {
+  min-width: 0;
+  min-height: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+  line-height: 34px;
+}
+
+.sidebar-nav-group {
+  display: grid;
+  min-height: 0;
+  gap: 6px;
+  padding: 0px 0 6px 4px;
+}
+
+.sidebar-search input:focus {
+  box-shadow: none;
+}
+
+.sidebar-nav-button {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  border: 1px solid #dce3eb;
+  border-radius: 10px;
+  background: transparent;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 0 8px;
+  text-align: left;
+  transition: background 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+  margin-bottom: 0;
+}
+
+.sidebar-nav-button:hover {
+  border-color: #d8e1eb;
+  background: #ffffff;
+  color: #111827;
+}
+
+.sidebar-nav-button.active {
+  border-color: #b9cef7;
+  background: #dbeafe;
+  color: #1d4ed8;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+}
+
+.sidebar-nav-button svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.sidebar-nav-button span {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.script-sidebar.collapsed .sidebar-nav-button {
+  width: 38px;
+  height: 38px;
+  min-height: 38px;
+  justify-content: center;
+  border: 1px solid #cfd8e3;
+  background: #ffffff;
+  padding: 0;
+}
+
+.script-sidebar.collapsed .sidebar-nav-button.active {
+  border-color: #93b4f8;
+}
+
+.script-sidebar.collapsed .sidebar-nav-button span {
+  display: none;
+}
+
+.sidebar-dashboard-button {
+  margin: 0;
+}
+
+.script-sidebar.collapsed .sidebar-dashboard-button {
+  margin: 8px 0 5px;
+}
+
+.sidebar-footer {
+  display: grid;
+  min-height: 0;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.script-sidebar.collapsed .sidebar-footer {
+  width: 100%;
+  justify-items: center;
+}
+
+.script-list {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  margin: 4px 0 8px 8px;
+  padding: 4px 0 4px 8px;
+  border-left: 1px solid #dbe5ef;
+}
+
+.script-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.script-sidebar.collapsed .script-list {
+  width: 100%;
+  align-self: stretch;
+  gap: 5px;
+  margin: 3px 0 8px;
+  padding: 4px 0 4px 7px;
+  border-left: 1px solid #dbe5ef;
+}
+
+.script-list-row {
+  width: 100%;
+  min-height: 34px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 3px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  padding: 3px;
+  transition: background 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.script-sidebar.collapsed .script-list-row {
+  min-height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1px 0;
+}
+
+.script-list-row:hover {
+  border-color: #d8e1eb;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.script-sidebar.collapsed .script-list-row:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.script-list-row.active {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  padding: 4px 5px;
+  border-color: #c7d9f7;
+  background: #edf5ff;
+  box-shadow: none;
+}
+
+.script-sidebar.collapsed .script-list-row.active {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.script-list-button {
+  min-width: 0;
+  min-height: 28px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.script-sidebar.collapsed .script-list-button {
+  width: 30px;
+  min-height: 30px;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0;
+}
+
+.script-list-button:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.script-sidebar.collapsed .script-list-button:hover {
+  background: transparent;
+}
+
+.script-list-button span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 10px;
+  background: #e9eef5;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.script-sidebar.collapsed .script-list-button span {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.script-list-button strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #17202a;
+  font-size: 11px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-empty-state {
+  display: grid;
+  gap: 4px;
+  border: 1px dashed #cbd6e2;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 12px;
+}
+
+.sidebar-empty-state strong {
+  color: #334155;
+  font-size: 12px;
+}
+
+.sidebar-empty-state p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.script-config-indicator {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+.script-config-indicator svg {
+  width: 13px;
+  height: 13px;
+}
+
+.script-list-row.active .script-list-button span {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.script-sidebar.collapsed .script-list-row.active .script-list-button span {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.script-list-actions {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  min-width: 47px;
+}
+
+.script-list-row.active .script-list-actions {
+  display: flex;
+}
+
+.script-list-actions .script-list-icon-button {
+  width: 23px;
+  height: 23px;
+  min-height: 23px;
+  border: 0;
+  border-radius: 7px;
+  padding: 0;
+  background: transparent;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.script-list-actions .script-list-icon-button:hover {
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.script-list-actions .script-list-icon-button.danger {
+  border: 0;
+  background: transparent;
+  color: #dc2626;
+}
+
+.script-list-actions .script-list-icon-button.danger:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.script-list-actions .script-list-icon-button svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+}

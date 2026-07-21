@@ -1,0 +1,96 @@
+﻿.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  background: #ecececa2;
+  color: #17202a;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.brand,
+.toggle-row,
+.canvas-toolbar,
+.node-topline,
+.node-meta {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-mark {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #26313f;
+  font-size: 19px;
+  font-weight: 850;
+  padding: 0 2px;
+}
+
+.brand-symbol {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  color: #2563eb;
+  filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.16));
+}
+
+.brand-text {
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  display: block;
+  color: #464f5c;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #111827;
+  font-weight: 750;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 19px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+.app-body {
+  height: calc(100vh - 24px);
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 252px minmax(0, 1fr);
+  gap: 12px;
+  transition: grid-template-columns 0.2s ease;
+  background: #ecececa2;
+}
+
+.app-body.sidebar-collapsed {
+  grid-template-columns: 62px minmax(0, 1fr);
+}
+
+.workspace-loading {
+  display: grid;
+  grid-column: 1 / -1;
+  place-items: center;
+  min-height: 320px;
+  color: #657386;
+  font-size: 13px;
+  font-weight: 750;
+}
+
