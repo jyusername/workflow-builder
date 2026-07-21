@@ -8,8 +8,11 @@ backend/workflow_builder.db
 backend/workflow_builder.db-shm
 backend/workflow_builder.db-wal
 
-# Generated execution output and logs
-backend/workspaces/
+# Project-local private inputs and generated execution output
+backend/workspaces/*/.workflow_runs/
+backend/workspaces/*/secrets/*
+!backend/workspaces/*/secrets/.gitkeep
+**/gcs-service-account*.json
 *.log
 
 # Frontend dependencies and build output

@@ -1,4 +1,4 @@
-export const hiddenConfigKeys = new Set(['run_dir', 'extraction_workers', 'routing_workers'])
+export const hiddenConfigKeys = new Set(['run_dir', 'resource_source_type', 'extraction_workers', 'routing_workers'])
 
 export const localSourceKeys = new Set([
   'source_dir',
@@ -25,9 +25,9 @@ export const fieldSchemas = {
     ],
   },
   source_dir: { label: 'Source Directory', type: 'path', placeholder: 'Enter local folder path' },
-  nonbdo_matrix: { label: 'Non-BDO Matrix', type: 'path', placeholder: 'Enter matrix file path', helper: 'Reference matrix for non-BDO routing.' },
-  bdo_matrix: { label: 'BDO Matrix', type: 'path', placeholder: 'Enter matrix file path', helper: 'Reference matrix for BDO routing.' },
-  credentials_file: { label: 'Credentials File', type: 'path', placeholder: 'Enter credentials file path', helper: 'Local credential file used by the ingestion scripts.' },
+  nonbdo_matrix: { label: 'Non-BDO Matrix', type: 'path', placeholder: 'inputs/matrices/NonBDO_Matrix.xlsx', helper: 'Path relative to this project workspace.' },
+  bdo_matrix: { label: 'BDO Matrix', type: 'path', placeholder: 'inputs/matrices/BDO_Matrix.xlsx', helper: 'Path relative to this project workspace.' },
+  credentials_file: { label: 'Credentials File', type: 'path', placeholder: 'secrets/gcs-service-account.json', helper: 'Path relative to this project workspace; the credential remains ignored by Git.' },
   valid_extensions: { label: 'Valid Extensions', type: 'list', placeholder: 'One extension per line, e.g. .xlsx', helper: 'Only files with these extensions will be scanned.' },
   skip_names: { label: 'Skip Names', type: 'list', placeholder: 'One filename or pattern per line', helper: 'Optional filenames or text patterns to ignore.' },
   skip_name_contains: { label: 'Skip Names Containing', type: 'list', placeholder: 'One text match per line', helper: 'Files containing these values in their name will be skipped.' },
@@ -61,8 +61,8 @@ export const fieldSchemas = {
     label: 'Delivery Target',
     type: 'select',
     options: [
-      { value: 'gcs', label: 'Cloud Storage' },
       { value: 'local', label: 'Local Drive' },
+      { value: 'gcs', label: 'Cloud Storage' },
     ],
     helper: 'Choose where final files are delivered.',
   },

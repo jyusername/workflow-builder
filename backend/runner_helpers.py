@@ -105,8 +105,16 @@ def init_runner_tables() -> None:
         connection.execute("CREATE INDEX IF NOT EXISTS idx_run_node_results_run_label ON run_node_results(run_id, node_label)")
 
 
-def get_project_workspace(project_id: int) -> Path:
-    path = WORKSPACES_DIR / f"project_{project_id}"
+def _validate_workspace_name(workspace_name: str) -> str:
+    name = workspace_name.strip()
+    if not name or not re.fullmatch(r"[A-Za-z0-9_-]+", name):
+        raise ValueError("Workspace name may only contain letters, numbers, underscores, and hyphens")
+    return name
+
+
+def get_project_workspace(project_id: int, workspace_name: str | None = None) -> Path:
+    directory_name = _validate_workspace_name(workspace_name) if workspace_name else f"project_{project_id}"
+    path = WORKSPACES_DIR / directory_name
     path.mkdir(parents=True, exist_ok=True)
     return path
 
@@ -119,8 +127,12 @@ def _is_relative_to(path: Path, root: Path) -> bool:
         return False
 
 
-def resolve_workspace_path(project_id: int, relative_path: str | Path) -> Path:
-    root = get_project_workspace(project_id).resolve()
+def resolve_workspace_path(
+    project_id: int,
+    relative_path: str | Path,
+    workspace_name: str | None = None,
+) -> Path:
+    root = get_project_workspace(project_id, workspace_name).resolve()
     target = (root / Path(str(relative_path))).resolve()
     if not _is_relative_to(target, root):
         raise ValueError("Path traversal outside the project workspace is blocked")
@@ -131,12 +143,17 @@ def resolve_local_path(path: str | Path) -> Path:
     return Path(str(path)).expanduser().resolve()
 
 
-def resolve_input_path(project_id: int, path: str | Path, source_type: str = "workspace") -> Path:
+def resolve_input_path(
+    project_id: int,
+    path: str | Path,
+    source_type: str = "workspace",
+    workspace_name: str | None = None,
+) -> Path:
     if source_type == "workspace":
         candidate = Path(str(path))
         if candidate.is_absolute():
             return resolve_local_path(candidate)
-        return resolve_workspace_path(project_id, candidate)
+        return resolve_workspace_path(project_id, candidate, workspace_name)
     if source_type == "local_path":
         return resolve_local_path(path)
     if source_type in {"url", "cloud"}:
@@ -1345,7 +1362,9 @@ def execute_run(run_id: int) -> dict[str, Any]:
     project_id = project["id"]
     workflow = project["workflow"]
     upstream = upstream_node_ids(workflow)
-    workspace = get_project_workspace(project_id)
+    workflow_settings = workflow.get("settings", {})
+    workspace_name = workflow_settings.get("workspace_name") if isinstance(workflow_settings, dict) else None
+    workspace = get_project_workspace(project_id, workspace_name)
     completed: dict[str, dict[str, Any]] = {}
     node_results: list[dict[str, Any]] = []
 
@@ -1393,11 +1412,16 @@ def execute_run(run_id: int) -> dict[str, Any]:
                 "inputs": node_context,
                 "result": None,
                 "workspace_dir": workspace,
-                "resolve_workspace_path": lambda relative_path: resolve_workspace_path(project_id, relative_path),
+                "resolve_workspace_path": lambda relative_path: resolve_workspace_path(
+                    project_id,
+                    relative_path,
+                    workspace_name,
+                ),
                 "resolve_input_path": lambda path, source_type="workspace": resolve_input_path(
                     project_id,
                     path,
                     source_type,
+                    workspace_name,
                 ),
                 "log": node_log,
                 "stop_if_requested": stop_if_requested,

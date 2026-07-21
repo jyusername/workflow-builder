@@ -317,18 +317,18 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
 
           <div className="settings-source-toggle">
             <button
-              className={isLocalDelivery ? '' : 'active'}
-              type="button"
-              onClick={() => update({ upload_target: 'gcs' })}
-            >
-              Cloud
-            </button>
-            <button
               className={isLocalDelivery ? 'active' : ''}
               type="button"
               onClick={() => update({ upload_target: 'local' })}
             >
               Local
+            </button>
+            <button
+              className={isLocalDelivery ? '' : 'active'}
+              type="button"
+              onClick={() => update({ upload_target: 'gcs' })}
+            >
+              Cloud
             </button>
           </div>
 

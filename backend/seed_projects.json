@@ -7,25 +7,26 @@
       "schedule_enabled": 0,
       "schedule_interval_minutes": null,
       "created_at": "2026-06-10T00:47:44.855670+00:00",
-      "updated_at": "2026-07-20T05:15:26.765196+00:00",
+      "updated_at": "2026-07-21T06:54:31.850304+00:00",
       "workflow": {
         "nodes": [
           {
             "id": "node-1781052499141",
             "label": "Validate Environment",
-            "script": "from pathlib import Path\n\nsource_type = config.get(\"source_type\", \"workspace\")\nupload_target = \"local\" if str(config.get(\"upload_target\", \"gcs\")).lower() == \"local\" else \"gcs\"\nsource_dir = resolve_input_path(config[\"source_dir\"], source_type)\nnonbdo_matrix = resolve_input_path(config[\"nonbdo_matrix\"], source_type)\nbdo_matrix = resolve_input_path(config[\"bdo_matrix\"], source_type)\ncredentials_file = None\nif upload_target != \"local\" or config.get(\"credentials_file\"):\n    credentials_file = resolve_input_path(config[\"credentials_file\"], source_type)\n\nrequired_paths = {\n    \"source_dir\": source_dir,\n    \"nonbdo_matrix\": nonbdo_matrix,\n    \"bdo_matrix\": bdo_matrix,\n}\nif upload_target != \"local\":\n    required_paths[\"credentials_file\"] = credentials_file\n\nfor name, path in required_paths.items():\n    if not Path(path).exists():\n        raise FileNotFoundError(f\"{name} does not exist: {path}\")\n\nrun_dir = Path(workspace_dir) / config.get(\"run_dir\", \".workflow_runs/raw_router\")\nrun_dir.mkdir(parents=True, exist_ok=True)\n\npaths = {\n    \"source_dir\": str(source_dir),\n    \"nonbdo_matrix\": str(nonbdo_matrix),\n    \"bdo_matrix\": str(bdo_matrix),\n    \"run_dir\": str(run_dir),\n}\nif credentials_file:\n    paths[\"credentials_file\"] = str(credentials_file)\n\nresult = {\n    \"status\": \"validated\",\n    \"delivery_target\": upload_target,\n    \"paths\": paths,\n}\n",
+            "script": "from pathlib import Path\n\nsource_type = config.get(\"source_type\", \"local_path\")\nresource_source_type = config.get(\"resource_source_type\", \"workspace\")\nupload_target = \"local\" if str(config.get(\"upload_target\", \"gcs\")).lower() == \"local\" else \"gcs\"\n\nsource_dir = resolve_input_path(config[\"source_dir\"], source_type)\nnonbdo_matrix = resolve_input_path(config[\"nonbdo_matrix\"], resource_source_type)\nbdo_matrix = resolve_input_path(config[\"bdo_matrix\"], resource_source_type)\ncredentials_file = None\nif upload_target != \"local\" or config.get(\"credentials_file\"):\n    credentials_file = resolve_input_path(config[\"credentials_file\"], resource_source_type)\n\nrequired_paths = {\n    \"source_dir\": source_dir,\n    \"nonbdo_matrix\": nonbdo_matrix,\n    \"bdo_matrix\": bdo_matrix,\n}\nif upload_target != \"local\":\n    required_paths[\"credentials_file\"] = credentials_file\n\nfor name, path in required_paths.items():\n    if not Path(path).exists():\n        raise FileNotFoundError(f\"{name} does not exist: {path}\")\n\nrun_dir = Path(workspace_dir) / config.get(\"run_dir\", \".workflow_runs/raw_router\")\nrun_dir.mkdir(parents=True, exist_ok=True)\n\npaths = {\n    \"source_dir\": str(source_dir),\n    \"nonbdo_matrix\": str(nonbdo_matrix),\n    \"bdo_matrix\": str(bdo_matrix),\n    \"run_dir\": str(run_dir),\n}\nif credentials_file:\n    paths[\"credentials_file\"] = str(credentials_file)\n\nresult = {\n    \"status\": \"validated\",\n    \"delivery_target\": upload_target,\n    \"paths\": paths,\n}\n",
             "config": {
               "source_type": "local_path",
-              "source_dir": "C:\\Users\\RISSSalesAud.RovPOS\\Downloads\\MJ\\gcs_script\\PaymentFiles",
-              "nonbdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/NonBDO_Matrix.xlsx",
-              "bdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/BDO_Matrix.xlsx",
-              "credentials_file": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/gcs-service-account.json",
+              "source_dir": "",
+              "nonbdo_matrix": "inputs/matrices/NonBDO_Matrix.xlsx",
+              "bdo_matrix": "inputs/matrices/BDO_Matrix.xlsx",
+              "credentials_file": "secrets/gcs-service-account.json",
               "run_dir": ".workflow_runs/raw_router",
               "cloud_provider": "Google Cloud Storage",
               "cloud_bucket": "Test-Bucket",
               "cloud_prefix": "",
               "cloud_credentials_ref": "",
-              "upload_target": "local"
+              "upload_target": "local",
+              "resource_source_type": "workspace"
             },
             "position": {
               "x": 620,
@@ -213,18 +214,19 @@
             {
               "id": "node-1781052499141",
               "label": "Validate Environment",
-              "script": "from pathlib import Path\n\nsource_type = config.get(\"source_type\", \"workspace\")\nsource_dir = resolve_input_path(config[\"source_dir\"], source_type)\nnonbdo_matrix = resolve_input_path(config[\"nonbdo_matrix\"], source_type)\nbdo_matrix = resolve_input_path(config[\"bdo_matrix\"], source_type)\ncredentials_file = resolve_input_path(config[\"credentials_file\"], source_type)\n\nrequired_paths = {\n    \"source_dir\": source_dir,\n    \"nonbdo_matrix\": nonbdo_matrix,\n    \"bdo_matrix\": bdo_matrix,\n    \"credentials_file\": credentials_file,\n}\n\nfor name, path in required_paths.items():\n    if not Path(path).exists():\n        raise FileNotFoundError(f\"{name} does not exist: {path}\")\n\nrun_dir = Path(workspace_dir) / config.get(\"run_dir\", \".workflow_runs/raw_router\")\nrun_dir.mkdir(parents=True, exist_ok=True)\n\nresult = {\n    \"status\": \"validated\",\n    \"paths\": {\n        \"source_dir\": str(source_dir),\n        \"nonbdo_matrix\": str(nonbdo_matrix),\n        \"bdo_matrix\": str(bdo_matrix),\n        \"credentials_file\": str(credentials_file),\n        \"run_dir\": str(run_dir),\n    }\n}\n",
+              "script": "from pathlib import Path\n\nsource_type = config.get(\"source_type\", \"local_path\")\nresource_source_type = config.get(\"resource_source_type\", \"workspace\")\nupload_target = \"local\" if str(config.get(\"upload_target\", \"gcs\")).lower() == \"local\" else \"gcs\"\n\nsource_dir = resolve_input_path(config[\"source_dir\"], source_type)\nnonbdo_matrix = resolve_input_path(config[\"nonbdo_matrix\"], resource_source_type)\nbdo_matrix = resolve_input_path(config[\"bdo_matrix\"], resource_source_type)\ncredentials_file = None\nif upload_target != \"local\" or config.get(\"credentials_file\"):\n    credentials_file = resolve_input_path(config[\"credentials_file\"], resource_source_type)\n\nrequired_paths = {\n    \"source_dir\": source_dir,\n    \"nonbdo_matrix\": nonbdo_matrix,\n    \"bdo_matrix\": bdo_matrix,\n}\nif upload_target != \"local\":\n    required_paths[\"credentials_file\"] = credentials_file\n\nfor name, path in required_paths.items():\n    if not Path(path).exists():\n        raise FileNotFoundError(f\"{name} does not exist: {path}\")\n\nrun_dir = Path(workspace_dir) / config.get(\"run_dir\", \".workflow_runs/raw_router\")\nrun_dir.mkdir(parents=True, exist_ok=True)\n\npaths = {\n    \"source_dir\": str(source_dir),\n    \"nonbdo_matrix\": str(nonbdo_matrix),\n    \"bdo_matrix\": str(bdo_matrix),\n    \"run_dir\": str(run_dir),\n}\nif credentials_file:\n    paths[\"credentials_file\"] = str(credentials_file)\n\nresult = {\n    \"status\": \"validated\",\n    \"delivery_target\": upload_target,\n    \"paths\": paths,\n}\n",
               "config": {
                 "source_type": "local_path",
-                "source_dir": "C:\\Users\\RISSSalesAud.RovPOS\\Downloads\\MJ\\gcs_script\\PaymentFiles",
-                "nonbdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/NonBDO_Matrix.xlsx",
-                "bdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/BDO_Matrix.xlsx",
-                "credentials_file": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/gcs-service-account.json",
+                "source_dir": "",
+                "nonbdo_matrix": "inputs/matrices/NonBDO_Matrix.xlsx",
+                "bdo_matrix": "inputs/matrices/BDO_Matrix.xlsx",
+                "credentials_file": "secrets/gcs-service-account.json",
                 "run_dir": ".workflow_runs/raw_router",
                 "cloud_provider": "Google Cloud Storage",
                 "cloud_bucket": "Test-Bucket",
                 "cloud_prefix": "",
-                "cloud_credentials_ref": ""
+                "cloud_credentials_ref": "",
+                "resource_source_type": "workspace"
               }
             },
             {
@@ -331,10 +333,10 @@
           ],
           "ingestion_defaults": {
             "source_type": "local_path",
-            "source_dir": "C:\\Users\\RISSSalesAud.RovPOS\\Downloads\\MJ\\gcs_script\\PaymentFiles",
-            "credentials_file": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/gcs-service-account.json",
-            "nonbdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/NonBDO_Matrix.xlsx",
-            "bdo_matrix": "C:/Users/RISSSalesAud.RovPOS/Downloads/MJ/gcs_script/Matrix/BDO_Matrix.xlsx",
+            "source_dir": "",
+            "credentials_file": "secrets/gcs-service-account.json",
+            "nonbdo_matrix": "inputs/matrices/NonBDO_Matrix.xlsx",
+            "bdo_matrix": "inputs/matrices/BDO_Matrix.xlsx",
             "cloud_provider": "Google Cloud Storage",
             "cloud_bucket": "Test-Bucket",
             "cloud_prefix": "",
@@ -357,20 +359,22 @@
             "upload_target": "local",
             "local_output_dir": "Downloads",
             "local_overwrite": true,
-            "upload_workers": 10
-          }
+            "upload_workers": 10,
+            "resource_source_type": "workspace"
+          },
+          "workspace_name": "ingestion_runner"
         }
       },
       "schedule": {
         "enabled": false,
         "type": "once",
-        "date": "2026-07-20",
-        "time": "13:10",
+        "date": "2026-07-21",
+        "time": "11:20",
         "days_of_week": [],
         "utc_offset_minutes": 480,
         "timezone_label": "Asia/Shanghai",
         "next_run_at": null,
-        "last_run_at": "2026-07-20T05:10:00.635849+00:00",
+        "last_run_at": "2026-07-21T03:20:00.827357+00:00",
         "every_minutes": null
       }
     }

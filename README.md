@@ -73,10 +73,23 @@ The live SQLite database is stored at `backend/workflow_builder.db`. It contains
 
 The repository instead tracks `backend/seed_projects.json`. On first startup, or whenever the live database has no projects, the backend imports the projects from this seed file. This preserves the workflow and its script nodes without committing execution logs.
 
-The following generated data is also excluded from Git:
+Project-local inputs for project 27 use this layout:
+
+```text
+backend/workspaces/ingestion_runner/
+├── inputs/
+│   └── matrices/   Tracked routing workbooks
+├── secrets/        Local credentials (ignored)
+└── .workflow_runs/ Generated run output (ignored)
+```
+
+Matrices and credentials use paths relative to the named project workspace, such as `inputs/matrices/BDO_Matrix.xlsx` and `secrets/gcs-service-account.json`. Source data stays outside the workspace and is selected by each user with a local folder path.
+
+The following generated or sensitive data is excluded from Git:
 
 - SQLite database, WAL, and shared-memory files
-- Workflow execution output under `backend/workspaces/`
+- Credentials under each project's `secrets/` directory
+- Workflow execution output under each project's `.workflow_runs/` directory
 - Application log files
 - Python caches and the backend virtual environment
 - Frontend dependencies and build output
