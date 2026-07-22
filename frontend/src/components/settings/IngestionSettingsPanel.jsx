@@ -191,8 +191,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.cloud_provider || ''}
                   aria-invalid={Boolean(fieldError('cloud_provider'))}
                   onChange={(event) => update({ cloud_provider: event.target.value })}
-                  placeholder="Google Cloud Storage"
+                  placeholder="Example: Google Cloud Storage"
                 />
+                <span className="settings-help">Select or type the cloud source provider. This is currently a placeholder for future cloud source input.</span>
                 {renderFieldMeta('cloud_provider')}
               </label>
               <label className="settings-field">
@@ -201,8 +202,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.cloud_bucket || ''}
                   aria-invalid={Boolean(fieldError('cloud_bucket'))}
                   onChange={(event) => update({ cloud_bucket: event.target.value })}
-                  placeholder="Source bucket"
+                  placeholder="Example: payment-source-bucket"
                 />
+                <span className="settings-help">Enter the bucket that contains the source files to scan.</span>
                 {renderFieldMeta('cloud_bucket')}
               </label>
               <label className="settings-field">
@@ -211,8 +213,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.cloud_prefix || ''}
                   aria-invalid={Boolean(fieldError('cloud_prefix'))}
                   onChange={(event) => update({ cloud_prefix: event.target.value })}
-                  placeholder="Optional folder/prefix"
+                  placeholder="Example: incoming/payments"
                 />
+                <span className="settings-help">Optional folder path inside the source bucket.</span>
                 {renderFieldMeta('cloud_prefix')}
               </label>
               <label className="settings-field">
@@ -221,8 +224,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.cloud_credentials_ref || ''}
                   aria-invalid={Boolean(fieldError('cloud_credentials_ref'))}
                   onChange={(event) => update({ cloud_credentials_ref: event.target.value })}
-                  placeholder="Credential reference"
+                  placeholder="Example: payment-source-service-account"
                 />
+                <span className="settings-help">Optional reference name for cloud source credentials.</span>
                 {renderFieldMeta('cloud_credentials_ref')}
               </label>
             </div>
@@ -234,8 +238,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.source_dir || ''}
                   aria-invalid={Boolean(fieldError('source_dir'))}
                   onChange={(event) => update({ source_dir: event.target.value })}
-                  placeholder="Source folder path"
+                  placeholder="Example: C:\PaymentFiles"
                 />
+                <span className="settings-help">Folder where the source files are located, for example C:\PaymentFiles.</span>
                 {renderFieldMeta('source_dir')}
               </label>
               {needsCredentialsFile && (
@@ -245,8 +250,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                     value={draft.credentials_file || ''}
                     aria-invalid={Boolean(fieldError('credentials_file'))}
                     onChange={(event) => update({ credentials_file: event.target.value })}
-                    placeholder="Credential file path"
+                    placeholder="Example: C:\Keys\service-account.json"
                   />
+                  <span className="settings-help">Required only for cloud delivery. Use the full path to the credential JSON file.</span>
                   {renderFieldMeta('credentials_file')}
                 </label>
               )}
@@ -256,8 +262,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.nonbdo_matrix || ''}
                   aria-invalid={Boolean(fieldError('nonbdo_matrix'))}
                   onChange={(event) => update({ nonbdo_matrix: event.target.value })}
-                  placeholder="Matrix file path"
+                  placeholder="Example: C:\Matrix\NonBDO_Matrix.xlsx"
                 />
+                <span className="settings-help">Reference file used to match and route non-BDO files.</span>
                 {renderFieldMeta('nonbdo_matrix')}
               </label>
               <label className="settings-field">
@@ -266,8 +273,9 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                   value={draft.bdo_matrix || ''}
                   aria-invalid={Boolean(fieldError('bdo_matrix'))}
                   onChange={(event) => update({ bdo_matrix: event.target.value })}
-                  placeholder="Matrix file path"
+                  placeholder="Example: C:\Matrix\BDO_Matrix.xlsx"
                 />
+                <span className="settings-help">Reference file used to match and route BDO files.</span>
                 {renderFieldMeta('bdo_matrix')}
               </label>
             </div>
@@ -291,6 +299,7 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                 onBlur={() => clearListDraft('valid_extensions')}
                 placeholder=".csv&#10;.xlsx&#10;.zip"
               />
+              <span className="settings-help">Add one extension per line. Only these file types will be scanned.</span>
               {renderFieldMeta('valid_extensions')}
             </label>
             <label className="settings-field">
@@ -302,6 +311,7 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                 onBlur={() => clearListDraft('skip_name_contains')}
                 placeholder="cm.bdo"
               />
+              <span className="settings-help">Add one text rule per line. Files containing these values in the filename will be skipped.</span>
               {renderFieldMeta('skip_name_contains')}
             </label>
           </div>
@@ -341,7 +351,7 @@ function IngestionSettingsPanel({ settings, onClose, onSave }) {
                     value={draft.local_output_dir || ''}
                     aria-invalid={Boolean(fieldError('local_output_dir'))}
                     onChange={(event) => update({ local_output_dir: event.target.value })}
-                    placeholder="Example: C:\\Ingestion_Output"
+                    placeholder="Example: C:\Ingestion_Output"
                   />
                   <span className="settings-help">Use a full folder path, for example C:\Ingestion_Output or C:/Ingestion_Output.</span>
                   {renderFieldMeta('local_output_dir')}
