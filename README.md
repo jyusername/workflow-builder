@@ -1,8 +1,8 @@
-<img width="1434" height="725" alt="image" src="https://github.com/user-attachments/assets/f1c9cdec-6c96-4643-a3d0-c8c5959335ea" />
-
 # Workflow Builder
 
 Workflow Builder is a local visual editor and runner for connected Python script nodes. It includes a React/Vite frontend, a FastAPI backend, a background workflow runner, scheduling, and execution monitoring.
+
+<img width="1434" height="725" alt="image" src="https://github.com/user-attachments/assets/f1c9cdec-6c96-4643-a3d0-c8c5959335ea" />
 
 ## Requirements
 
